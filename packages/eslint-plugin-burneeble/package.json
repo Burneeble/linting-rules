@@ -1,6 +1,6 @@
 {
   "name": "@burneeble/eslint-plugin-burneeble",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Burneeble javascript rules",
   "keywords": [
     "eslint",
