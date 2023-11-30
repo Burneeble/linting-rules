@@ -1,6 +1,6 @@
 {
   "name": "stylelint-plugin-burneeble",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Burneeble style rules",
   "main": "index.js",
   "scripts": {
