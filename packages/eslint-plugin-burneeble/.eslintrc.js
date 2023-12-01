@@ -10,6 +10,9 @@ module.exports = {
   env: {
     node: true,
   },
+  parserOptions: {
+    ecmaVersion: "latest",
+  },
   overrides: [
     {
       files: ["tests/**/*.js"],

@@ -13,15 +13,15 @@ module.exports = {
   messages: {},
   meta: {
     messages: {
-      error: "",
+      error: "Variables must be written in camelCase.",
     },
     type: "problem", // `problem`, `suggestion`, or `layout`
     docs: {
-      description: "Variables must be written in camelCase",
+      description: "Variables must be written in camelCase.",
       recommended: false,
       url: null, // URL to the documentation page for this rule
     },
-    fixable: null, // Or `code` or `whitespace`
+    fixable: "code", // Or `code` or `whitespace`
     schema: [], // Add a schema if the rule has options
   },
 
@@ -38,6 +38,31 @@ module.exports = {
     // Public
     //----------------------------------------------------------------------
 
-    return {};
+    return {
+      VariableDeclarator(node) {
+        if (node.id.name && node.id.type === "Identifier") {
+          const varName = node.id.name;
+          if (!/^[a-z][a-zA-Z0-9]*$/.test(varName)) {
+            const fixed = toCamelCase(varName);
+            context.report({
+              node,
+              messageId: "error",
+              fix: (fixer) => {
+                return fixer.replaceTextRange(node.id.range, fixed);
+              },
+            });
+          }
+        }
+      },
+    };
   },
 };
+
+function toCamelCase(inputString) {
+  return inputString.replace(/^([A-Z])|[\s-_](\w)/g, (match, p1, p2) => {
+    if (p2) {
+      return p2.toUpperCase();
+    }
+    return p1.toLowerCase();
+  });
+}
