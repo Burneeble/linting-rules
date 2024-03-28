@@ -40,6 +40,9 @@ module.exports = {
 
     return {
       VariableDeclarator(node) {
+        if (node.init) {
+          if (node.init.type === "ArrowFunctionExpression") return;
+        }
         if (node.id.name && node.id.type === "Identifier") {
           const varName = node.id.name;
           if (!/^[a-z][a-zA-Z0-9]*$/.test(varName)) {

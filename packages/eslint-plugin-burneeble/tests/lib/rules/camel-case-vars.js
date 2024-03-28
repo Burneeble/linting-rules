@@ -16,7 +16,13 @@ const rule = require("../../../lib/rules/camel-case-vars"),
 //------------------------------------------------------------------------------
 
 const ruleTester = new RuleTester({
-  parserOptions: { ecmaVersion: 2015 },
+  parserOptions: {
+    ecmaVersion: 8,
+    sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
 });
 ruleTester.run("camel-case-vars", rule, {
   valid: [
@@ -28,6 +34,12 @@ ruleTester.run("camel-case-vars", rule, {
     },
     {
       code: 'const someValue = "hello";',
+    },
+    {
+      code: "const MyComponent = () => {return <></>};",
+    },
+    {
+      code: "let someValue;",
     },
   ],
 
