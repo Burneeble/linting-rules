@@ -1,6 +1,15 @@
 "use strict";
 
-module.exports = {
+const { FlatCompat } = require("@eslint/eslintrc");
+const js = require("@eslint/js");
+
+const compat = new FlatCompat({
+  recommendedConfig: js.configs.recommended,
+  baseDirectory: __dirname,
+  allConfig: js.configs.all,
+});
+
+module.exports = compat({
   root: true,
   extends: [
     "next/core-web-vitals",
@@ -13,17 +22,21 @@ module.exports = {
     node: true,
     es6: true,
   },
-  parserOptions: {
+
+  languageOptions: {
     ecmaVersion: 8,
     sourceType: "module",
-    ecmaFeatures: {
-      jsx: true,
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true,
+      },
     },
   },
+
   overrides: [
     {
       files: ["tests/**/*.js"],
       env: { mocha: true },
     },
   ],
-};
+});
