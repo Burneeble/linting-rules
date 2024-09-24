@@ -9,27 +9,20 @@ const compat = new FlatCompat({
   allConfig: js.configs.all,
 });
 
-module.exports = compat({
+module.exports = compat.config({
   root: true,
-  extends: [
-    "next/core-web-vitals",
-    "eslint:recommended",
-    "plugin:eslint-plugin/recommended",
-    "plugin:node/recommended",
-  ],
+  extends: ["eslint:recommended", "plugin:eslint-plugin/recommended"],
   plugins: ["react"],
   env: {
     node: true,
     es6: true,
   },
 
-  languageOptions: {
+  parserOptions: {
     ecmaVersion: 8,
     sourceType: "module",
-    parserOptions: {
-      ecmaFeatures: {
-        jsx: true,
-      },
+    ecmaFeatures: {
+      jsx: true,
     },
   },
 

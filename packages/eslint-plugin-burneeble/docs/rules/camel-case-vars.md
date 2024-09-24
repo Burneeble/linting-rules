@@ -1,4 +1,8 @@
-# Variables must be written in camelCase (`camel-case-vars`)
+# Variables must be written in camelCase (`@burneeble/burneeble/camel-case-vars`)
+
+🔧 This rule is automatically fixable by the [`--fix` CLI option](https://eslint.org/docs/latest/user-guide/command-line-interface#--fix).
+
+<!-- end auto-generated rule header -->
 
 Please describe the origin of the rule here.
 
@@ -9,22 +13,14 @@ This rule aims to...
 Examples of **incorrect** code for this rule:
 
 ```js
-
 // fill me in
-
 ```
 
 Examples of **correct** code for this rule:
 
 ```js
-
 // fill me in
-
 ```
-
-### Options
-
-If there are any options, describe them here. Otherwise, delete this section.
 
 ## When Not To Use It
 
