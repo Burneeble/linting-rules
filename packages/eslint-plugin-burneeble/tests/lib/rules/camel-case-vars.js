@@ -44,6 +44,19 @@ ruleTester.run("camel-case-vars", rule, {
     {
       code: "let someValue;",
     },
+    {
+      code: "const MyForwardRefComponent = forwardRef((props, ref) => {return <div ref={ref} />;});",
+    },
+    {
+      code: `const Checkbox = forwardRef((props, ref) => { return (<></>); });`,
+    },
+    {
+      code: `const Checkbox = forwardRef(
+        ({ label }, ref) => { 
+          return (<></>); 
+        }
+      );`,
+    },
   ],
 
   invalid: [

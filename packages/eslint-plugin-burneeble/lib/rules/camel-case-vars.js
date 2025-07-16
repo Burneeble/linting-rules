@@ -42,6 +42,15 @@ module.exports = {
       VariableDeclarator(node) {
         if (node.init) {
           if (node.init.type === "ArrowFunctionExpression") return;
+          // Skip forwardRef calls (React components)
+          if (node.init.type === "CallExpression") {
+            // Handle both forwardRef and forwardRef<Type>
+            const callee = node.init.callee;
+            if (callee.name === "forwardRef" || 
+                (callee.type === "Identifier" && callee.name === "forwardRef")) {
+              return;
+            }
+          }
         }
         if (node.id.name && node.id.type === "Identifier") {
           const varName = node.id.name;
